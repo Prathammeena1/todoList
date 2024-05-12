@@ -37,7 +37,7 @@ const App = () => {
     newTasks[index].complete = !newTasks[index].complete
     settasks(newTasks)
     localStorage.setItem('tasks',JSON.stringify(newTasks))
-    setstrokeDashoffset((tasks.filter(t=> t.complete).length/tasks.length)*252 - 252)
+    setstrokeDashoffset((newTasks.filter(t=> t.complete).length/newTasks.length)*252 - 252)
   }
   
   
@@ -46,7 +46,7 @@ const App = () => {
     newTasks.splice(index,1)
     settasks(newTasks)
     localStorage.setItem('tasks',JSON.stringify(newTasks))
-    setstrokeDashoffset((tasks.filter(t=> t.complete).length/tasks.length)*252 - 252)
+    setstrokeDashoffset((newTasks.filter(t=> t.complete).length/newTasks.length)*252 - 252 )
   }
 
   const circle = useRef()
@@ -86,14 +86,14 @@ const App = () => {
         </div>
 
 
-        <div ref={parent} className="right absolute top-0 pt-20 w-full h-screen flex flex-col items-center justify-center gap-4 overflow-hidden">
-          <div  className="tasks w-full flex gap-2 overflow-hidden h-screen">
+        <div ref={parent} className="right absolute top-0 pt-20 w-full h-screen flex flex-col items-center justify-center gap-4 overflow-hidden ">
+          <div  className="tasks w-full flex gap-2 overflow-hidden h-screen flex-wrap">
             {tasks.length == 0 ? [<h1 key={nanoid()} className='text-white font-medium text-3xl capitalize text-center'>no task yet</h1>] : tasks.map((task,index) => {
               return (<motion.div
                 key={task.id}
                 drag // Enable drag functionality
                 dragConstraints={parent}
-                className="task flex items-center bg-zinc-900 rounded-xl w-[10vw] h-[8vw] px-4 py-2 gap-2"
+                className="task flex items-center bg-zinc-900 rounded-xl w-[10vw] h-[8vw] px-4 py-2 gap-2 flex-shrink-0"
                 style={{ cursor: 'grab' }} // Set cursor to indicate draggable element
               >
                 <i onClick={() => taskCompleted(index)} className={task.complete ? completedClass : incompletedClass}></i>
