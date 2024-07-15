@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Ensure the main container hides overflow */
+.main {
+    overflow: hidden;
+    /* Add the following if not already included */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Ensure the tasks container hides overflow */
+  .tasks {
+    overflow: hidden;
+  }
+  
